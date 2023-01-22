@@ -2,19 +2,24 @@ import './App.css';
 import Header from './components/Header';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Home from './components/Home';
-import Book from './components/Book';
 import BookDetails from './components/BookDetails';
+import { useContext } from 'react';
+import AuthContext from './store/auth-context'
+import LoginPage from './pages/Login/LoginPage'
 
 
 function App() {
 
+  const authCtx = useContext(AuthContext);
+  const isLogged = authCtx.isLoggedIn;
 
   return (
     <Router>
-      <Header />
+      <Header></Header>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/book/:title" element={<BookDetails />} />
+        <Route path="/login" element={<LoginPage />} />
       </Routes>
     </Router>
 
